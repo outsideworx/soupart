@@ -10,16 +10,20 @@ function resetImage() {
     image.src = originalSrc;
 }
 
-// Mouse support
-image.addEventListener('mousedown', showRandomImage);
+image.addEventListener('mousedown', (e) => {
+    e.preventDefault(); // Just in case
+    showRandomImage();
+});
 image.addEventListener('mouseup', resetImage);
 image.addEventListener('mouseleave', resetImage);
 
-// Touch support
 image.addEventListener('touchstart', (e) => {
     e.preventDefault();
     showRandomImage();
 }, { passive: false });
-
 image.addEventListener('touchend', resetImage);
 image.addEventListener('touchcancel', resetImage);
+
+image.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
