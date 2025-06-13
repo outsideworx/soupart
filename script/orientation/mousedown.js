@@ -11,7 +11,7 @@ function resetImage() {
 }
 
 image.addEventListener('mousedown', (e) => {
-    e.preventDefault(); // Just in case
+    e.preventDefault();
     showRandomImage();
 });
 image.addEventListener('mouseup', resetImage);
