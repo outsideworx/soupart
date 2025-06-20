@@ -5,4 +5,4 @@ Whether you're a potential collaborator, an admirer of art, or simply curious, t
 
 ---
 
-![design_soupart](https://github.com/user-attachments/assets/4ba0972b-f714-463d-88c1-c2929a7b69af)
+![design_soupart](https://github.com/user-attachments/assets/4682c374-8061-4f04-91de-c7191d1c17c9)
