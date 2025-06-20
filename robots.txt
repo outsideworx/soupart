@@ -1,2 +1,6 @@
 User-agent: *
+Disallow: /
+Allow: /sitemap.xml
+Allow: /home.html
+
 Sitemap: https://soupart.net/sitemap.xml
