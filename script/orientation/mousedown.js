@@ -13,10 +13,10 @@ function showSpray() {
     sprayImg.alt = 'spray effect';
 
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '15%';
-    sprayImg.style.left = '5%';
-    sprayImg.style.width = '50vw'; // 50% of the screen width
-    sprayImg.style.height = 'auto'; // maintain aspect ratio
+    sprayImg.style.top = '15vh';   // 15% of viewport height
+    sprayImg.style.left = '5vw';   // 5% of viewport width
+    sprayImg.style.width = '50vw'; // 50% of viewport width
+    sprayImg.style.height = 'auto'; // Maintain aspect ratio
     sprayImg.style.pointerEvents = 'none';
     sprayImg.style.zIndex = '10';
     sprayImg.style.userSelect = 'none';
