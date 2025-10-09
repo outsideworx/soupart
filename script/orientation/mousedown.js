@@ -19,7 +19,7 @@ function showSpray() {
 
     // Absolute positioning relative to .image-container
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '15%';    // 15% of container height
+    sprayImg.style.top = '22%';    // 15% of container height
     sprayImg.style.left = '5%';    // 5% of container width
     sprayImg.style.width = '50%';  // 50% of container width
     sprayImg.style.height = 'auto';
