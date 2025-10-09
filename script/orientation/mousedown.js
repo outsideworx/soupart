@@ -6,28 +6,33 @@ const defaultSrc = 'img/background_0.webp';
 const activeSrc = 'img/background_1.webp';
 let sprayImg = null;
 
-// Make sure the container establishes a positioning context
-// (already true from your CSS, but this enforces consistency)
-container.style.position = container.style.position || 'relative';
-
-// Utility: show a random spray overlay, anchored to the container
+// Utility: show a random spray overlay, positioned relative to the image bounds
 function showSpray() {
     const randomNum = Math.floor(Math.random() * 20) + 1; // 1–20
     sprayImg = document.createElement('img');
     sprayImg.src = `../img/spray/${randomNum}.webp`;
     sprayImg.alt = 'spray effect';
-
-    // Absolute positioning relative to .image-container
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '22%';    // 15% of container height
-    sprayImg.style.left = '5%';    // 5% of container width
-    sprayImg.style.width = '50%';  // 50% of container width
-    sprayImg.style.height = 'auto';
     sprayImg.style.pointerEvents = 'none';
     sprayImg.style.zIndex = '2';
     sprayImg.style.userSelect = 'none';
 
+    // Append first to measure correctly
     container.appendChild(sprayImg);
+
+    // Compute position relative to the actual image area
+    const rect = img.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    // Calculate proportional offsets within the image bounds
+    const topOffset = rect.top - containerRect.top + rect.height * 0.15; // 15% down from image top
+    const leftOffset = rect.left - containerRect.left + rect.width * 0.05; // 5% right from image left
+
+    // Apply proportional size and position in pixels
+    sprayImg.style.top = `${topOffset}px`;
+    sprayImg.style.left = `${leftOffset}px`;
+    sprayImg.style.width = `${rect.width * 0.5}px`; // 50% of the image width
+    sprayImg.style.height = 'auto';
 }
 
 // Utility: reset image and remove spray
@@ -45,7 +50,6 @@ document.addEventListener('mousedown', (e) => {
     const clickX = e.clientX;
     const screenWidth = window.innerWidth;
 
-    // Only trigger when clicking leftmost 25% of the screen
     if (clickX < screenWidth / 4) {
         img.src = activeSrc;
         showSpray();
@@ -55,11 +59,11 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener('mouseup', resetImage);
 document.addEventListener('mouseleave', resetImage);
 
-// Touch controls (for mobile)
+// Touch controls
 document.addEventListener('touchstart', (e) => {
     e.preventDefault();
 
-    // If multiple touches (pinch), reset immediately
+    // Handle pinch gestures
     if (e.touches.length > 1) {
         resetImage();
         return;
@@ -76,15 +80,9 @@ document.addEventListener('touchstart', (e) => {
 
 document.addEventListener('touchend', resetImage);
 document.addEventListener('touchcancel', resetImage);
-
-// Detect multi-touch gestures in progress (pinch)
 document.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 1) {
-        resetImage();
-    }
+    if (e.touches.length > 1) resetImage();
 }, { passive: true });
 
-// Prevent context menus (right-click / long-press)
-document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+// Prevent context menu (right-click or long-press)
+document.addEventListener('contextmenu', (e) => e.preventDefault());
