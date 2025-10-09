@@ -33,7 +33,7 @@ function resetImage() {
     }
 }
 
-// Handle mouse down (left quarter trigger)
+// Mouse controls
 document.addEventListener('mousedown', (e) => {
     e.preventDefault();
     const clickX = e.clientX;
@@ -48,9 +48,16 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener('mouseup', resetImage);
 document.addEventListener('mouseleave', resetImage);
 
-// Handle touch events (for mobile)
+// Touch controls
 document.addEventListener('touchstart', (e) => {
     e.preventDefault();
+
+    // If more than one finger is used (pinch), reset immediately
+    if (e.touches.length > 1) {
+        resetImage();
+        return;
+    }
+
     const touchX = e.touches[0].clientX;
     const screenWidth = window.innerWidth;
 
@@ -60,8 +67,18 @@ document.addEventListener('touchstart', (e) => {
     }
 }, { passive: false });
 
-document.addEventListener('touchend', resetImage);
+// When the finger lifts or gesture ends
+document.addEventListener('touchend', (e) => {
+    resetImage();
+});
 document.addEventListener('touchcancel', resetImage);
+
+// Detect ongoing multi-touch (pinch move)
+document.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) {
+        resetImage();
+    }
+}, { passive: true });
 
 // Prevent context menu (right-click or long-press)
 document.addEventListener('contextmenu', (e) => {
