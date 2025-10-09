@@ -6,21 +6,22 @@ const defaultSrc = 'img/background_0.webp';
 const activeSrc = 'img/background_1.webp';
 let sprayImg = null;
 
-// Make sure container allows relative positioning context
-container.style.position = 'relative';
+// Make sure the container establishes a positioning context
+// (already true from your CSS, but this enforces consistency)
+container.style.position = container.style.position || 'relative';
 
-// Utility: show a random spray overlay (relative to the container)
+// Utility: show a random spray overlay, anchored to the container
 function showSpray() {
     const randomNum = Math.floor(Math.random() * 20) + 1; // 1–20
     sprayImg = document.createElement('img');
     sprayImg.src = `../img/spray/${randomNum}.webp`;
     sprayImg.alt = 'spray effect';
 
-    // Positioned relative to the background image
+    // Absolute positioning relative to .image-container
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '22%';   // 15% from container's top
-    sprayImg.style.left = '5%';   // 5% from container's left
-    sprayImg.style.width = '50%'; // 50% of container's width
+    sprayImg.style.top = '15%';    // 15% of container height
+    sprayImg.style.left = '5%';    // 5% of container width
+    sprayImg.style.width = '50%';  // 50% of container width
     sprayImg.style.height = 'auto';
     sprayImg.style.pointerEvents = 'none';
     sprayImg.style.zIndex = '2';
@@ -38,12 +39,13 @@ function resetImage() {
     }
 }
 
-// Handle mouse down (left quarter trigger)
+// Mouse controls
 document.addEventListener('mousedown', (e) => {
     e.preventDefault();
     const clickX = e.clientX;
     const screenWidth = window.innerWidth;
 
+    // Only trigger when clicking leftmost 25% of the screen
     if (clickX < screenWidth / 4) {
         img.src = activeSrc;
         showSpray();
@@ -53,11 +55,11 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener('mouseup', resetImage);
 document.addEventListener('mouseleave', resetImage);
 
-// Handle touch events (for mobile)
+// Touch controls (for mobile)
 document.addEventListener('touchstart', (e) => {
     e.preventDefault();
 
-    // Reset if multiple touches (pinch gesture)
+    // If multiple touches (pinch), reset immediately
     if (e.touches.length > 1) {
         resetImage();
         return;
@@ -75,14 +77,14 @@ document.addEventListener('touchstart', (e) => {
 document.addEventListener('touchend', resetImage);
 document.addEventListener('touchcancel', resetImage);
 
-// Detect multi-touch gestures during move (pinch)
+// Detect multi-touch gestures in progress (pinch)
 document.addEventListener('touchmove', (e) => {
     if (e.touches.length > 1) {
         resetImage();
     }
 }, { passive: true });
 
-// Prevent right-click / long-press context menu
+// Prevent context menus (right-click / long-press)
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 });
