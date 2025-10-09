@@ -5,6 +5,10 @@ const defaultSrc = 'img/background_0.webp';
 const activeSrc = 'img/background_1.webp';
 let sprayImg = null;
 
+// Ensure the parent container allows relative positioning context
+img.style.position = 'relative';
+img.style.display = 'block'; // ensure it respects its container
+
 // Utility: show a random spray overlay
 function showSpray() {
     const randomNum = Math.floor(Math.random() * 20) + 1; // 1–20
@@ -13,15 +17,30 @@ function showSpray() {
     sprayImg.alt = 'spray effect';
 
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '15vh';   // 15% of viewport height
-    sprayImg.style.left = '5vw';   // 5% of viewport width
-    sprayImg.style.width = '50vw'; // 50% of viewport width
-    sprayImg.style.height = 'auto'; // Maintain aspect ratio
+    sprayImg.style.top = '15%';   // relative to the image height
+    sprayImg.style.left = '5%';   // relative to the image width
+    sprayImg.style.width = '50%'; // 50% of the background image width
+    sprayImg.style.height = 'auto';
     sprayImg.style.pointerEvents = 'none';
-    sprayImg.style.zIndex = '10';
+    sprayImg.style.zIndex = '2';
     sprayImg.style.userSelect = 'none';
 
-    document.body.appendChild(sprayImg);
+    // Place the spray image as a child of the main image container
+    // For this, wrap the main image in a container (done below if not already)
+    if (!img.parentElement.classList.contains('image-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('image-wrapper');
+        wrapper.style.position = 'relative';
+        wrapper.style.display = 'inline-block';
+        wrapper.style.width = '100%';
+        wrapper.style.height = 'auto';
+
+        img.parentElement.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+    }
+
+    // Append spray inside the same wrapper as the image
+    img.parentElement.appendChild(sprayImg);
 }
 
 // Utility: reset image and remove spray
@@ -67,10 +86,7 @@ document.addEventListener('touchstart', (e) => {
     }
 }, { passive: false });
 
-// When the finger lifts or gesture ends
-document.addEventListener('touchend', (e) => {
-    resetImage();
-});
+document.addEventListener('touchend', resetImage);
 document.addEventListener('touchcancel', resetImage);
 
 // Detect ongoing multi-touch (pinch move)
