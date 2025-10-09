@@ -11,14 +11,16 @@ function showSpray() {
     sprayImg = document.createElement('img');
     sprayImg.src = `../img/spray/${randomNum}.webp`;
     sprayImg.alt = 'spray effect';
+
     sprayImg.style.position = 'absolute';
-    sprayImg.style.top = '18%';
-    sprayImg.style.left = '7%';
-    sprayImg.style.transform = 'scale(0.5)';
-    sprayImg.style.transformOrigin = 'top left';
+    sprayImg.style.top = '15%';
+    sprayImg.style.left = '5%';
+    sprayImg.style.width = '50vw'; // 50% of the screen width
+    sprayImg.style.height = 'auto'; // maintain aspect ratio
     sprayImg.style.pointerEvents = 'none';
     sprayImg.style.zIndex = '10';
     sprayImg.style.userSelect = 'none';
+
     document.body.appendChild(sprayImg);
 }
 
@@ -46,7 +48,7 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener('mouseup', resetImage);
 document.addEventListener('mouseleave', resetImage);
 
-// Handle touch events
+// Handle touch events (for mobile)
 document.addEventListener('touchstart', (e) => {
     e.preventDefault();
     const touchX = e.touches[0].clientX;
@@ -61,7 +63,7 @@ document.addEventListener('touchstart', (e) => {
 document.addEventListener('touchend', resetImage);
 document.addEventListener('touchcancel', resetImage);
 
-// Prevent long-press context menus (especially on mobile)
+// Prevent context menu (right-click or long-press)
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 });
