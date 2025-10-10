@@ -46,7 +46,7 @@ function resetImage() {
 
 // Mouse controls
 document.addEventListener('mousedown', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const clickX = e.clientX;
     const screenWidth = window.innerWidth;
 
@@ -61,7 +61,7 @@ document.addEventListener('mouseleave', resetImage);
 
 // Touch controls
 document.addEventListener('touchstart', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     // Handle pinch gestures
     if (e.touches.length > 1) {
