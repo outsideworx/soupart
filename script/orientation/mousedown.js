@@ -19,8 +19,8 @@ function showSpray() {
     const rect = img.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
 
-    const topOffset = rect.top - containerRect.top + rect.height * 0.15;
-    const leftOffset = rect.left - containerRect.left + rect.width * 0.05;
+    const topOffset = rect.top - containerRect.top + rect.height * 0.16;
+    const leftOffset = rect.left - containerRect.left + rect.width * 0.07;
 
     sprayImg.style.top = `${topOffset}px`;
     sprayImg.style.left = `${leftOffset}px`;
