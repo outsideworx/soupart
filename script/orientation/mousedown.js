@@ -42,7 +42,7 @@ document.addEventListener('mousedown', (e) => {
     const clickX = e.clientX;
     const screenWidth = window.innerWidth;
 
-    if (clickX < screenWidth / 4) {
+    if (clickX < screenWidth / 3.56) {
         img.src = activeSrc;
         showSpray();
     }
