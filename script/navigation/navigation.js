@@ -4,11 +4,9 @@ function positionLinks() {
     const imgNaturalWidth = 1920;
     const imgNaturalHeight = 1080;
     const navigation = [
-        {element: document.getElementById("illustration"), x: 915, y: 195},
-        {element: document.getElementById("design"), x: 915, y: 328},
-        {element: document.getElementById("animation"), x: 915, y: 460},
-        {element: document.getElementById("art"), x: 915, y: 595},
-        {element: document.getElementById("mail"), x: 915, y: 870},
+        {element: document.getElementById("home"), x: 200, y: 360},
+        {element: document.getElementById("back"), x: 900, y: 890},
+        {element: document.getElementById("forward"), x: 1250, y: 890},
     ];
 
     const imgContainer = img.parentElement;
@@ -25,8 +23,8 @@ function positionLinks() {
     navigation.forEach(hs => {
         hs.element.style.left = `${offsetX + hs.x * scale}px`;
         hs.element.style.top = `${offsetY + hs.y * scale}px`;
-        hs.element.style.width = `${660 * scale}px`;
-        hs.element.style.height = `${110 * scale}px`;
+        hs.element.style.width = `${200 * scale}px`;
+        hs.element.style.height = `${200 * scale}px`;
     });
 }
 
