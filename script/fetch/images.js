@@ -1,6 +1,6 @@
 function loadImages(category) {
     const urlParams = new URLSearchParams(window.location.search);
-    const offset = urlParams.get("offset");
+    const offset = Number(urlParams.get("offset") || 0);
     $.ajax({
         url: `/api/cached/soupart?category=${category}&offset=${offset}`,
         method: 'GET',
