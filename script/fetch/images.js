@@ -2,7 +2,7 @@ function loadImages(category) {
     const urlParams = new URLSearchParams(window.location.search);
     const offset = urlParams.get("offset");
     $.ajax({
-        url: `/api/soupart?category=${category}&offset=${offset}`,
+        url: `/api/cached/soupart?category=${category}&offset=${offset}`,
         method: 'GET',
         success: function (response) {
             if (response) {
