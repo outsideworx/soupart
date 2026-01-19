@@ -18,7 +18,7 @@ function loadImages(category) {
                         }
                     });
                     for (let i = response.length + 1; i <= 4; i++) {
-                        document.getElementById("item" + i).remove();
+                        document.getElementById("image" + i).remove();
                     }
                 }
             }
