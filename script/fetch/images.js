@@ -14,7 +14,7 @@ function loadImages(category) {
                         if (item.thumbnail && item.image) {
                             let imageById = document.getElementById("image" + (index + 1));
                             imageById.src = item.thumbnail;
-                            imageById.alt = item.image;
+                            imageById.alt = category === "animation" ? item.link : item.image;
                             imageById.hidden = false;
                         }
                     });
