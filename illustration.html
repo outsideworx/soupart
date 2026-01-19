@@ -50,7 +50,7 @@
 <script src="script/fetch/images.js"></script>
 <script defer>
     function setModalImage(imgElement) {
-        document.getElementById("modalImg").src = imgElement.src;
+        document.getElementById("modalImg").src = imgElement.alt;
     }
     $(window).on("load", function () {
         loadImages("illustration");

@@ -11,9 +11,10 @@ function loadImages(category) {
                         window.history.go(-1);
                     }
                     response.forEach((item, index) => {
-                        if (item.image) {
+                        if (item.thumbnail && item.image) {
                             let imageById = document.getElementById("image" + (index + 1));
-                            imageById.src = item.image;
+                            imageById.src = item.thumbnail;
+                            imageById.alt = item.image;
                             imageById.hidden = false;
                         }
                     });
