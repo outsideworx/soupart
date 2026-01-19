@@ -6,29 +6,20 @@ function loadImages(category) {
         method: 'GET',
         success: function (response) {
             if (response) {
-                if (response.image1) {
-                    document.getElementById("image1").src = response.image1;
-                    document.getElementById("image1").hidden = false;
-                } else {
-                    document.getElementById("image1").remove();
-                }
-                if (response.image2) {
-                    document.getElementById("image2").src = response.image2;
-                    document.getElementById("image2").hidden = false;
-                } else {
-                    document.getElementById("image2").remove();
-                }
-                if (response.image3) {
-                    document.getElementById("image3").src = response.image3;
-                    document.getElementById("image3").hidden = false;
-                } else {
-                    document.getElementById("image3").remove();
-                }
-                if (response.image4) {
-                    document.getElementById("image4").src = response.image4;
-                    document.getElementById("image4").hidden = false;
-                } else {
-                    document.getElementById("image4").remove();
+                if (response && Array.isArray(response)) {
+                    if (response.length === 0 && offset !== "0") {
+                        window.history.go(-1);
+                    }
+                    response.forEach((item, index) => {
+                        if (item.image) {
+                            let imageById = document.getElementById("image" + (index + 1));
+                            imageById.src = item.image;
+                            imageById.hidden = false;
+                        }
+                    });
+                    for (let i = response.length + 1; i <= 4; i++) {
+                        document.getElementById("item" + i).remove();
+                    }
                 }
             }
         },
