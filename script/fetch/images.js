@@ -7,7 +7,7 @@ function loadImages(category) {
         success: function (response) {
             if (response) {
                 if (response && Array.isArray(response)) {
-                    if (response.length === 0 && offset !== "0") {
+                    if (response.length === 0 && offset !== 0) {
                         window.history.go(-1);
                     }
                     response.forEach((item, index) => {
