@@ -30,19 +30,16 @@ function loadImages(category) {
 }
 
 function setNavigation() {
-    const urlParams = new URLSearchParams(window.location.search);
-    let offset = urlParams.get("offset");
-    if (offset) {
-        offset = parseInt(offset);
-        if (offset >= 4) {
-            const back = document.getElementById("back");
-            const url = new URL(back.href);
-            url.searchParams.set("offset", offset - 4);
-            back.href = url.toString();
-        }
-        const forward = document.getElementById("forward");
-        const url = new URL(forward.href);
-        url.searchParams.set("offset", offset + 4);
-        forward.href = url.toString();
+    let urlParams = new URLSearchParams(window.location.search);
+    let offset = Number(urlParams.get("offset") || 0);
+    if (offset >= 4) {
+        const back = document.getElementById("back");
+        const url = new URL(back.href);
+        url.searchParams.set("offset", offset - 4);
+        back.href = url.toString();
     }
+    const forward = document.getElementById("forward");
+    const url = new URL(forward.href);
+    url.searchParams.set("offset", offset + 4);
+    forward.href = url.toString();
 }
