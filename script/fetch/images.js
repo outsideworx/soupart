@@ -11,7 +11,7 @@ function loadImages(category) {
                         window.history.go(-1);
                     }
                     response.forEach((item, index) => {
-                        if (item.thumbnail && item.image) {
+                        if (item.thumbnail && (item.image || item.link)) {
                             let imageById = document.getElementById("image" + (index + 1));
                             imageById.src = item.thumbnail;
                             imageById.alt = category === "animation" ? item.link : item.image;
