@@ -17,7 +17,7 @@ function loadImages(category) {
                             imageById.hidden = false;
                         }
                     });
-                    for (let i = response.length + 1; i <= 4; i++) {
+                    for (let i = response.length + 1; i <= 9; i++) {
                         document.getElementById("image" + i).remove();
                     }
                 }
@@ -32,14 +32,14 @@ function loadImages(category) {
 function setNavigation() {
     let urlParams = new URLSearchParams(window.location.search);
     let offset = Number(urlParams.get("offset") || 0);
-    if (offset >= 4) {
+    if (offset >= 9) {
         const back = document.getElementById("back");
         const url = new URL(back.href);
-        url.searchParams.set("offset", offset - 4);
+        url.searchParams.set("offset", offset - 9);
         back.href = url.toString();
     }
     const forward = document.getElementById("forward");
     const url = new URL(forward.href);
-    url.searchParams.set("offset", offset + 4);
+    url.searchParams.set("offset", offset + 9);
     forward.href = url.toString();
 }
