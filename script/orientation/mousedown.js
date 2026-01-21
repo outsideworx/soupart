@@ -58,7 +58,7 @@ document.addEventListener('touchstart', (e) => {
         return;
     }
 
-    e.preventDefault();
+    // e.preventDefault();
     const touchX = e.touches[0].clientX;
     const screenWidth = window.innerWidth;
 
