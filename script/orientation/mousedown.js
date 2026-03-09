@@ -37,7 +37,7 @@ function resetImage() {
 }
 
 // Mouse controls
-document.addEventListener('mousedown', (e) => {
+document.addEventListener('pointerdown', (e) => {
     e.preventDefault();
     const clickX = e.clientX;
     const screenWidth = window.innerWidth;
@@ -48,30 +48,7 @@ document.addEventListener('mousedown', (e) => {
     }
 });
 
-document.addEventListener('mouseup', resetImage);
-document.addEventListener('mouseleave', resetImage);
-
-// Touch controls
-document.addEventListener('touchstart', (e) => {
-    if (e.touches.length > 1) {
-        resetImage();
-        return;
-    }
-
-    // e.preventDefault();
-    const touchX = e.touches[0].clientX;
-    const screenWidth = window.innerWidth;
-
-    if (touchX < screenWidth / 4) {
-        img.src = activeSrc;
-        showSpray();
-    }
-}, { passive: false });
-
-document.addEventListener('touchend', resetImage);
-document.addEventListener('touchcancel', resetImage);
-document.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 1) resetImage();
-}, { passive: true });
-
+document.addEventListener('pointerup', resetImage);
+document.addEventListener('pointerleave', resetImage);
+document.addEventListener('pointercancel', resetImage);
 document.addEventListener('contextmenu', (e) => e.preventDefault());
