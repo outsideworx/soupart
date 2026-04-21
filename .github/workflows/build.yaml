@@ -15,6 +15,6 @@ jobs:
             await github.rest.repos.createDispatchEvent({
               owner: 'outsideworx',
               repo: 'sites',
-              event_type: 'build',
+              event_type: 'build-soupart',
               client_payload: { name: 'soupart' }
             })
