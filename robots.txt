@@ -2,6 +2,6 @@ User-agent: *
 Disallow: /
 Allow: /sitemap.xml
 Allow: /home.html
-Allow: /img/favicon.ico
+Allow: /favicon.ico
 
 Sitemap: https://soupart.net/sitemap.xml
