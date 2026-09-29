@@ -7,7 +7,7 @@ let sprayImg = null;
 function showSpray() {
     const randomNum = Math.floor(Math.random() * 20) + 1;
     sprayImg = document.createElement('img');
-    sprayImg.src = `../img/spray/${randomNum}.webp`;
+    sprayImg.src = `img/spray/${randomNum}.webp`;
     sprayImg.alt = 'spray effect';
     sprayImg.style.position = 'absolute';
     sprayImg.style.pointerEvents = 'none';
